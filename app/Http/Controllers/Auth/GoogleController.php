@@ -48,7 +48,7 @@ class GoogleController extends Controller
         });
 
         return response()->json([
-            'user' => new UserResource($user),
+            'user' => $user,
             'google_user' => $googleUser,
         ]);
     }
