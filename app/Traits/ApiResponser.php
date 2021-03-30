@@ -18,9 +18,9 @@ trait ApiResponser
     /**
      * Return a success JSON response.
      *
-     * @param  array|string  $data
-     * @param  string  $message
-     * @param  int|null  $code
+     * @param array|string $data
+     * @param string|null $message
+     * @param int|null $code
      * @return JsonResponse
      */
     protected function success($data, string $message = null, int $code = 200): JsonResponse
