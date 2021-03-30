@@ -9,9 +9,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
+use App\Traits\ApiResponser;
 
 class GoogleController extends Controller
 {
+    use ApiResponser;
+
     /**
      * Get google login url
      *
@@ -47,9 +50,12 @@ class GoogleController extends Controller
             }
         });
 
-        return response()->json([
+        if (is_null($user)) return $this->error(500, "Database error");
+
+        return $this->success([
             'user' => $user,
             'google_user' => $googleUser,
+            'token' => $user->createToken('API Token')->plainTextToken
         ]);
     }
 }
