@@ -19,9 +19,9 @@ class AuthController extends Controller
     {
         try {
             $attr = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|unique:users,email',
-                'password' => 'required|string|min:6|confirmed'
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|min:6'
             ]);
 
             $user = User::create([
@@ -43,7 +43,7 @@ class AuthController extends Controller
             }
             return $this->error(500, "Could not register. Server Error.");
         } catch (\Exception $e) {
-            return $this->error(500, $e->getMessage());
+            return $this->error(500, 'sup');
         }
     }
 
