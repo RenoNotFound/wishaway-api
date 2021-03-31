@@ -23,7 +23,7 @@ trait ApiResponser
      * @param int|null $code
      * @return JsonResponse
      */
-    protected function success($data, string $message = null, int $code = 200): JsonResponse
+    protected function success($data = null, string $message = null, int $code = 200): JsonResponse
     {
         return response()->json([
             'status' => 'Success',
