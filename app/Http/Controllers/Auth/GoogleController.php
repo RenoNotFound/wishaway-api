@@ -55,7 +55,7 @@ class GoogleController extends Controller
         return $this->success([
             'user' => $user,
             'google_user' => $googleUser,
-            'token' => $user->createToken('API Token')->plainTextToken
+            'token' => 'Bearer ' . $user->createToken('API Token')->plainTextToken
         ]);
     }
 }
