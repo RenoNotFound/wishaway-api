@@ -30,9 +30,7 @@ class AuthController extends Controller
                 'email' => $attr['email']
             ]);
 
-            return $this->success([
-                'token' => $user->createToken('API Token')->plainTextToken
-            ]);
+            return $this->success(null, 'Successful registration!');
 
         } catch (ValidationException $e) {
             return $this->error(400, $e->getMessage());
