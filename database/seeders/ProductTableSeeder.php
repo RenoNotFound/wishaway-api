@@ -16,23 +16,22 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         DB::table('products')->delete();
-        $this->insertHealthProducts();
+        $this->handleHealthProductsInsertion();
 
     }
 
-    private function insertHealthProducts(): void
+    /**
+     * Handles getting products and inserting them to database
+     *
+     */
+    private function handleHealthProductsInsertion(): void
     {
-        $productsPosture = $this->getContents('health','posture.json');
-        $productsMassagers = $this->getContents('health','massagers.json');
-        $productsOrthoses = $this->getContents('health','orthoses.json');
-        $productsFitness = $this->getContents('health','fitness.json');
-        $productsMasks = $this->getContents('health','masks.json');
+        $healthSubcategories = ['posture.json', 'massagers.json', 'orthoses.json', 'fitness.json', 'masks.json'];
 
-        $this->insertProducts($productsPosture);
-        $this->insertProducts($productsMassagers);
-        $this->insertProducts($productsOrthoses);
-        $this->insertProducts($productsFitness);
-        $this->insertProducts($productsMasks);
+        foreach ($healthSubcategories as $healthSubcategory) {
+            $products = $this->getContents('health', $healthSubcategory);
+            $this->insertProducts($products);
+        }
     }
 
     /**
