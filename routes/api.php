@@ -25,7 +25,7 @@ Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::get('/subcategories/{category}', [SubcategoryController::class, 'getSubcategories']);
-Route::get('/products/{subcategory}', [ProductController::class, 'getProductsBySubcategory']);
+Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
