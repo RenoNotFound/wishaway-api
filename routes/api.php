@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Http\Request;
@@ -28,8 +29,9 @@ Route::get('auth/facebook/callback', [FacebookController::class, 'loginCallback'
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::get('/products/{category}', [ProductController::class, 'getProductsByCategory']);
-Route::get('/subcategories/{category}', [SubcategoryController::class, 'getSubcategories']);
+Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/products/{categoryId}', [ProductController::class, 'getProductsByCategory']);
+Route::get('/subcategories/{categoryId}', [SubcategoryController::class, 'getSubcategories']);
 Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
