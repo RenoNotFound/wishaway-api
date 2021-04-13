@@ -28,6 +28,7 @@ Route::get('auth/facebook/callback', [FacebookController::class, 'loginCallback'
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
+Route::get('/products/{category}', [ProductController::class, 'getProductsByCategory']);
 Route::get('/subcategories/{category}', [SubcategoryController::class, 'getSubcategories']);
 Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
 
