@@ -65,6 +65,7 @@ class ProductTableSeeder extends Seeder
                 'description' => $product->description,
                 'price' => $product->price,
                 'pic_url' => $product->pic_url,
+                'category' => $product->category,
                 'subcategory_id' => $product->subcategory_id,
             ]);
         }
