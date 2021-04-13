@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubcategoryController;
@@ -21,12 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('auth/google/url', [GoogleController::class, 'googleLoginUrl']);
 Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 
+Route::get('auth/facebook/url', [FacebookController::class, 'facebookLoginUrl']);
+Route::get('auth/facebook/callback', [FacebookController::class, 'loginCallback']);
+
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::get('/subcategories/{category}', [SubcategoryController::class, 'getSubcategories']);
 Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
-
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', function(Request $request) {

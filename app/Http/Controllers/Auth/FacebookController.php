@@ -7,11 +7,11 @@ use App\Models\SocialAccount;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
-use App\Traits\ApiResponser;
 
-class GoogleController extends Controller
+class FacebookController extends Controller
 {
     use ApiResponser;
 
@@ -20,10 +20,10 @@ class GoogleController extends Controller
      *
      * @return JsonResponse
      */
-    public function googleLoginUrl(): JsonResponse
+    public function facebookLoginUrl(): JsonResponse
     {
         return response()->json([
-            'url' => Socialite::driver('google')->stateless()->redirect()->getTargetUrl(),
+            'url' => Socialite::driver('facebook')->stateless()->redirect()->getTargetUrl(),
         ]);
     }
 
@@ -32,19 +32,19 @@ class GoogleController extends Controller
      */
     public function loginCallback(): JsonResponse
     {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $facebookUser = Socialite::driver('facebook')->stateless()->user();
         $user = null;
 
-        DB::transaction(function () use ($googleUser, &$user) {
+        DB::transaction(function () use ($facebookUser, &$user) {
             $socialAccount = SocialAccount::query()->firstOrNew(
-                ['social_id' => $googleUser->getId(), 'social_provider' => 'google'],
-                ['social_name' => $googleUser->getName()]
+                ['social_id' => $facebookUser->getId(), 'social_provider' => 'facebook'],
+                ['social_name' => $facebookUser->getName()]
             );
 
             if (!($user = $socialAccount->user)) {
                 $user = User::query()->create([
-                    'email' => $googleUser->getEmail(),
-                    'name' => $googleUser->getName(),
+                    'email' => $facebookUser->getEmail(),
+                    'name' => $facebookUser->getName(),
                 ]);
                 $socialAccount->fill(['user_id' => $user->id])->save();
             }
@@ -54,8 +54,9 @@ class GoogleController extends Controller
 
         return $this->success([
             'user' => $user,
-            'google_user' => $googleUser,
-            'token' => 'Bearer ' . $user->createToken('google user')->plainTextToken
+            'google_user' => $facebookUser,
+            'token' => 'Bearer ' . $user->createToken('facebook user')->plainTextToken
         ]);
     }
+
 }
