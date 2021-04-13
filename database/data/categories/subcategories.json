@@ -1,7 +1,7 @@
 [
-    {"name":  "posture", "category": "health", "description": "In need of posture fixing? Browse through the products below and find the most suitable for your needs!"},
-    {"name":  "massagers", "category": "health", "description": "Feeling sore after an activity? Here you can find some super efficient self massagers for relieving the soreness!"},
-    {"name":  "orthoses", "category": "health", "description": "Pain in joint or body segments? These products will correct the shape and/or function of the body, to provide easier movement capability or reduce pain!"},
-    {"name":  "fitness", "category": "health", "description": "Looking to improve your fitness level? Check out our strengthening products to achieve your goal and more!"},
-    {"name":  "masks", "category": "health", "description": "Out of masks? Look through these masks and choose the best suitable for you!"}
+    {"name":  "posture", "category_id": 1, "description": "In need of posture fixing? Browse through the products below and find the most suitable for your needs!"},
+    {"name":  "massagers", "category_id": 1, "description": "Feeling sore after an activity? Here you can find some super efficient self massagers for relieving the soreness!"},
+    {"name":  "orthoses", "category_id": 1, "description": "Pain in joint or body segments? These products will correct the shape and/or function of the body, to provide easier movement capability or reduce pain!"},
+    {"name":  "fitness", "category_id": 1, "description": "Looking to improve your fitness level? Check out our strengthening products to achieve your goal and more!"},
+    {"name":  "masks", "category_id": 1, "description": "Out of masks? Look through these masks and choose the best suitable for you!"}
 ]

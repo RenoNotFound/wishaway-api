@@ -27,8 +27,8 @@ class SubcategoriesTableSeeder extends Seeder
         foreach ($subcategories as $subcategory) {
             Subcategory::create([
                 'name' => $subcategory->name,
-                'category' => $subcategory->category,
-                'description' => $subcategory->description
+                'description' => $subcategory->description,
+                'category_id' => $subcategory->category_id
             ]);
         }
     }
