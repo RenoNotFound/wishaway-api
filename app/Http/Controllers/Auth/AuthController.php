@@ -58,6 +58,7 @@ class AuthController extends Controller
             }
 
             return $this->success([
+                'user' => auth()->user(),
                 'token' => auth()->user()->createToken('API Token')->plainTextToken
             ]);
         } catch (ValidationException $e) {
