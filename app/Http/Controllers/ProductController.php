@@ -16,13 +16,13 @@ class ProductController extends Controller
     /**
      * Get all products by category
      *
-     * @param string $category
+     * @param int $categoryId
      * @return JsonResponse
      */
-    public function getProductsByCategory(string $category): JsonResponse
+    public function getProductsByCategory(int $categoryId): JsonResponse
     {
         try {
-            $products = Product::where('category', $category)->get()->shuffle();
+            $products = Product::where('category_id', $categoryId)->get()->shuffle();
             return $this->success(['products' => $products]);
 
         } catch (QueryException $e) {

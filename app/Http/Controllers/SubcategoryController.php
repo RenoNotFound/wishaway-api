@@ -15,13 +15,13 @@ class SubcategoryController extends Controller
     /**
      * Get all subcategories by category
      *
-     * @param string $category
+     * @param int $categoryId
      * @return JsonResponse
      */
-    public function getSubcategories(string $category): JsonResponse
+    public function getSubcategories(int $categoryId): JsonResponse
     {
         try {
-            $subcategories = Subcategory::where('category', $category)->get();
+            $subcategories = Subcategory::where('category_id', $categoryId)->get();
             return $this->success(['subcategories' => $subcategories]);
 
         } catch (QueryException $e) {
@@ -30,5 +30,4 @@ class SubcategoryController extends Controller
             return $this->error(500, $e->getMessage());
         }
     }
-
 }
