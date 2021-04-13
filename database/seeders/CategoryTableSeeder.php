@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subcategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SubcategoriesTableSeeder extends Seeder
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,20 +15,19 @@ class SubcategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('subcategories')->delete();
+        DB::table('categories')->delete();
 
         $subcategoriesJson = file_get_contents(
             database_path() . DIRECTORY_SEPARATOR .
             'data' . DIRECTORY_SEPARATOR .
             'categories' . DIRECTORY_SEPARATOR .
-            "subcategories.json");
+            "categories.json");
         $subcategories = json_decode($subcategoriesJson);
 
         foreach ($subcategories as $subcategory) {
-            Subcategory::create([
+            Category::create([
                 'name' => $subcategory->name,
-                'description' => $subcategory->description,
-                'category_id' => $subcategory->category_id
+                'description' => $subcategory->description
             ]);
         }
     }

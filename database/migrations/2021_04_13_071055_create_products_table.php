@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->decimal('price');
             $table->string('pic_url', 255);
+            $table->foreignId('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreignId('subcategory_id')->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
             $table->timestamps();
