@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -11,6 +12,26 @@ use App\Traits\ApiResponser;
 class ProductController extends Controller
 {
     use ApiResponser;
+
+    /**
+     * Get all products by category
+     *
+     * @param string $category
+     * @return JsonResponse
+     */
+    public function getProductsByCategory(string $category): JsonResponse
+    {
+        try {
+            $products = Product::where('category', $category)->get()->shuffle();
+            return $this->success(['products' => $products]);
+
+        } catch (QueryException $e) {
+            return $this->error(500, $e->getMessage(), 'Database error');
+
+        } catch (\Exception $e) {
+            return $this->error(500, $e->getMessage());
+        }
+    }
 
     /**
      * Get all products by subcategory
