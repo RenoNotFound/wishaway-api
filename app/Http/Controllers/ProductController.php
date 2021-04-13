@@ -61,5 +61,4 @@ class ProductController extends Controller
             return $this->error(500, $e->getMessage());
         }
     }
-
 }
