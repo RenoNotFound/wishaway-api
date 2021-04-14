@@ -29,7 +29,7 @@ Route::get('auth/facebook/callback', [FacebookController::class, 'loginCallback'
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/category/{categoryId}', [CategoryController::class, 'getCategoryById']);
 Route::get('/products/{categoryId}', [ProductController::class, 'getProductsByCategory']);
 Route::get('/subcategories/{categoryId}', [SubcategoryController::class, 'getSubcategories']);
 Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
