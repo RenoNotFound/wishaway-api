@@ -15,13 +15,14 @@ class CategoryController extends Controller
     /**
      * Get all categories
      *
+     * @param int $categoryId
      * @return JsonResponse
      */
-    public function getCategories(): JsonResponse
+    public function getCategoryById(int $categoryId): JsonResponse
     {
         try {
-            $categories = Category::all();
-            return $this->success(['categories' => $categories]);
+            $category = Category::find($categoryId);
+            return $this->success(['category' => $category]);
 
         } catch (QueryException $e) {
             return $this->error(500, $e->getMessage(), 'Database error');
