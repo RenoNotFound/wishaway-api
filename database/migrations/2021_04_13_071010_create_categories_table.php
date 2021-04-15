@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('description', 255);
+            $table->string('pic_url', 255);
         });
     }
 

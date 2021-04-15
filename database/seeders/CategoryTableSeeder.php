@@ -27,7 +27,8 @@ class CategoryTableSeeder extends Seeder
         foreach ($subcategories as $subcategory) {
             Category::create([
                 'name' => $subcategory->name,
-                'description' => $subcategory->description
+                'description' => $subcategory->description,
+                'pic_url' => $subcategory->pic_url
             ]);
         }
     }
