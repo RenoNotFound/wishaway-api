@@ -32,7 +32,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/category/{categoryId}', [CategoryController::class, 'getCategoryById']);
 Route::get('/products/{categoryId}', [ProductController::class, 'getProductsByCategory']);
 Route::get('/subcategories/{categoryId}', [SubcategoryController::class, 'getSubcategories']);
-Route::get('/products/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
+Route::get('/products-sub/{subcategoryId}', [ProductController::class, 'getProductsBySubcategory']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', function(Request $request) {
