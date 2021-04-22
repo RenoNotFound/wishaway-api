@@ -45,6 +45,7 @@ class ProductController extends Controller
             $products = DB::table('products')
                 ->join('subcategories', 'products.subcategory_id', '=', "subcategories.id")
                 ->select(
+                    'products.id',
                     'products.name',
                     'products.description',
                     'products.price',
